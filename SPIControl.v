@@ -48,9 +48,25 @@ always @(posedge clk or posedge rst) begin
                 // Your SPI communication logic goes here
                 // For example, shift in/out data based on the joystick protocol
                 // Update RxData accordingly
+                if (rising_edge(clk)) begin
+                    // Shift out data on MOSI
+                    sndRec <= 0;
+                    txData <= {txData[6:0], dSend[7]};
+                end
+
+                // Sample data on MISO
+                RxData <= {RxData[6:0], sndData[7]};
+                
+                if (falling_edge(clk)) begin
+                    // Shift in data from MISO
+                    sndData <= {sndData[6:0], RxData[7]};
+                end
 
                 // Transition to the next state when the transfer is complete
-                state <= WAIT_FOR_READ;
+                if (ss && (txData == 8'b0)) begin
+                    state <= WAIT_FOR_READ;
+                    getByte <= 1;
+                end
             WAIT_FOR_READ:
                 if (getByte) begin
                     // Your logic to read data from the joystick
