@@ -1,10 +1,6 @@
 `timescale 1ns/1ps
 
 
-Certainly! To communicate with a PMOD joystick using SPI, you need to handle the SPI transactions based on the joystick's protocol. Below is an example of how you might structure your SPIControl module to communicate with a hypothetical PMOD joystick. Please note that the actual protocol may vary based on the joystick model, so you should refer to the datasheet for your specific joystick for accurate information.
-
-verilog
-Copy code
 module SPIControl (
     input clk,      // Clock input
     input rst,      // Reset input

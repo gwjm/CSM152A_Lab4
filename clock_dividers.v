@@ -37,6 +37,5 @@ module clock_dividers (
                 cnt_66khz <= 28'd0;
             end
         end
-
     end
 endmodule 
