@@ -50,10 +50,12 @@ module PMODJSTK(
     SPIInterface spi_interface(
         .clk(isclk),
         .rst(rst),
+        .din(sndData),
         .mosi(mosi),
         .miso(miso),
         .sclk(sclk),
         .nss(ss),
         .ready(getbyte)
+        .dout(RxData)
     );
 endmodule 

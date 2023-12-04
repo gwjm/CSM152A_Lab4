@@ -3,11 +3,13 @@
 module SPIInterface (
     input wire clk,         // Clock input
     input wire rst,         // Reset input
+    input  wire [7:0] din, 
     input wire [7:0] mosi,  // Master Out, Slave In
     output reg [7:0] miso,  // Master In, Slave Out
     output reg sclk,        // Serial Clock
     output reg nss,         // Active-Low Slave Select
     output reg ready        // Ready signal indicating when the interface is ready for data transfer
+    output reg [7:0] dout;
 );
 
 // Internal state machine states
