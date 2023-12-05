@@ -83,8 +83,25 @@ module top(
              .CLKOUT(sndRec)
      );
      
+     
+          
+      assign posData = {jstkData[25:24], jstkData[39:32]};
+      
+      // Data to be sent to PmodJSTK, lower two bits will turn on leds on PmodJSTK
+      assign sndData = {8'b100000, {SW[1], SW[2]}};
+ 
+      // Assign PmodJSTK button status to LED[2:0]
+      always @(sndRec or reset or jstkData) begin
+              if(reset == 1'b1) begin
+                      LED <= 3'b000;
+              end
+              else begin
+                      LED <= {jstkData[1], {jstkData[2], jstkData[0]}};
+              end
+      end
+     
      VGAdriver vga(.clk(clk), .reset(w_reset), .vid_on(w_vid_on), .hsync(hsync), .vsync(vsync), .p_tick(w_p_tick), .x(w_x), .y(w_y));
-     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .rgb(rgb_next));
+     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .posdata(posData), .rgb(rgb_next));
      debouncer btReset(.clk(clk), .btn_in(reset), .btn_out(w_reset));
      debouncer btnU(.clk(clk), .btn_in(up), .btn_out(w_up));
      debouncer btnD(.clk(clk), .btn_in(down), .btn_out(w_down));
@@ -95,20 +112,4 @@ module top(
              rgb_reg <= rgb_next;
              
      assign rgb = rgb_reg;
-     
-     
-     assign posData = (SW[0] == 1'b1) ? {jstkData[9:8], jstkData[23:16]} : {jstkData[25:24], jstkData[39:32]};
-     
-     // Data to be sent to PmodJSTK, lower two bits will turn on leds on PmodJSTK
-     assign sndData = {8'b100000, {SW[1], SW[2]}};
-
-     // Assign PmodJSTK button status to LED[2:0]
-     always @(sndRec or reset or jstkData) begin
-             if(reset == 1'b1) begin
-                     LED <= 3'b000;
-             end
-             else begin
-                     LED <= {jstkData[1], {jstkData[2], jstkData[0]}};
-             end
-     end
 endmodule

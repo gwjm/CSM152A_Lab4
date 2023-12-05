@@ -23,7 +23,7 @@
 
 module pixelGenerator(
     // inputs
-    clk, reset, up, down, video_on, x, y, switch,
+    clk, reset, up, down, video_on, x, y, switch, posdata,
     //outputs
     rgb
     );
@@ -36,6 +36,7 @@ module pixelGenerator(
     input video_on;
     input [9:0] x;
     input [9:0] y;
+    input [9:0] posdata;
     input switch;
     output reg [11:0] rgb;
     
@@ -141,15 +142,15 @@ module pixelGenerator(
         y_pad_next = y_pad_reg;     // no move
         if(refresh_tick)
             if(up & (y_pad_t > PAD_VELOCITY))
-                y_pad_next = y_pad_reg - PAD_VELOCITY;  // move up
-            else if(down & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
-                y_pad_next = y_pad_reg + PAD_VELOCITY;  // move down
+                y_pad_next = y_pad_reg - PAD_VELOCITY;
+            else if(down & (y_pad_b < (Y_MAX - PAD_VELOCITY))) 
+               y_pad_next = y_pad_reg + PAD_VELOCITY;
         end else begin
             y_pad_next = y_pad_reg;     // no move
             if(refresh_tick)
-                if(up & (y_pad_t > PAD_VELOCITY))
-                    y_pad_next = y_pad_reg - PAD_VELOCITY;  // move up
-                else if(down & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
+                if((posdata > 10'd610) & (y_pad_t > PAD_VELOCITY))
+                    y_pad_next = y_pad_reg - PAD_VELOCITY; 
+                else if((posdata < 10'd490) & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
                     y_pad_next = y_pad_reg + PAD_VELOCITY;
         end
     end
