@@ -23,7 +23,7 @@
 
 module pixelGenerator(
     // inputs
-    clk, reset, up, down, video_on, x, y, 
+    clk, reset, up, down, video_on, x, y, switch,
     //outputs
     rgb
     );
@@ -36,6 +36,7 @@ module pixelGenerator(
     input video_on;
     input [9:0] x;
     input [9:0] y;
+    input switch;
     output reg [11:0] rgb;
     
     // maximum x, y values in display area
@@ -136,12 +137,21 @@ module pixelGenerator(
                     
     // Paddle Control
     always @* begin
+        if(switch == 1) begin
         y_pad_next = y_pad_reg;     // no move
         if(refresh_tick)
             if(up & (y_pad_t > PAD_VELOCITY))
                 y_pad_next = y_pad_reg - PAD_VELOCITY;  // move up
             else if(down & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
                 y_pad_next = y_pad_reg + PAD_VELOCITY;  // move down
+        end else begin
+            y_pad_next = y_pad_reg;     // no move
+            if(refresh_tick)
+                if(up & (y_pad_t > PAD_VELOCITY))
+                    y_pad_next = y_pad_reg - PAD_VELOCITY;  // move up
+                else if(down & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
+                    y_pad_next = y_pad_reg + PAD_VELOCITY;
+        end
     end
     
     // rom data square boundaries
