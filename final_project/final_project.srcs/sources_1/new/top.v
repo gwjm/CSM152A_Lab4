@@ -21,6 +21,14 @@
 
 
 module top(
-
+        clk, reset, up, down, hsync, vsync, rgb
     );
+    
+     input clk;
+     input reset;
+     input up;
+     input down;
+     output hsync;
+     output vsync;
+     output [11:0] rgb;
 endmodule
