@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Dec  6 00:59:51 2023
-# Process ID: 16916
+# Start of session at: Wed Dec  6 03:07:56 2023
+# Process ID: 6296
 # Current directory: C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.runs/synth_1/top.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 18744 
+INFO: Helper process launched with PID 6416 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 409.289 ; gain = 97.172
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 409.738 ; gain = 96.914
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/top.v:23]
 INFO: [Synth 8-6157] synthesizing module 'PmodJSTK' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/PmodJSTK.v:23]
@@ -71,8 +71,6 @@ INFO: [Synth 8-6155] done synthesizing module 'pixelGenerator' (7#1) [C:/Users/B
 INFO: [Synth 8-6157] synthesizing module 'debouncer' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/debouncer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'debouncer' (8#1) [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/debouncer.v:23]
 INFO: [Synth 8-6157] synthesizing module 'scorecounter' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/scorecounter.v:23]
-WARNING: [Synth 8-6090] variable 'dig0_next' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/scorecounter.v:51]
-WARNING: [Synth 8-6090] variable 'dig1_next' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/scorecounter.v:52]
 INFO: [Synth 8-6155] done synthesizing module 'scorecounter' (9#1) [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/scorecounter.v:23]
 INFO: [Synth 8-6157] synthesizing module 'sevenSeg' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/sevenSeg.v:23]
 	Parameter cntEndVal bound to: 16'b1100001101010000 
@@ -83,9 +81,11 @@ WARNING: [Synth 8-567] referenced signal 'DIN4' should be on the sensitivity lis
 INFO: [Synth 8-226] default block is never used [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/sevenSeg.v:135]
 INFO: [Synth 8-6155] done synthesizing module 'sevenSeg' (10#1) [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/sevenSeg.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'top' (11#1) [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/top.v:23]
+WARNING: [Synth 8-3331] design scorecounter has unconnected port clk
+WARNING: [Synth 8-3331] design scorecounter has unconnected port d_clr
 WARNING: [Synth 8-3331] design top has unconnected port SW[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.863 ; gain = 151.746
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.984 ; gain = 151.160
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -98,10 +98,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.863 ; gain = 151.746
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.984 ; gain = 151.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.863 ; gain = 151.746
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 463.984 ; gain = 151.160
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -117,22 +117,22 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 801.305 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 800.211 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'pState_reg' in module 'spiCtrl'
 INFO: [Synth 8-5544] ROM "SS" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
@@ -150,7 +150,8 @@ INFO: [Synth 8-5546] ROM "CLKOUT" won't be mapped to RAM because it is too spars
 INFO: [Synth 8-5546] ROM "CLKOUT" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "w_25MHz" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "v_count_next" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5544] ROM "dig1_next" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "r_dig3" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "r_dig1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "DCLK" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -171,10 +172,8 @@ INFO: [Synth 8-3354] encoded FSM with state register 'pState_reg' using encoding
                     Done |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'pState_reg' using encoding 'sequential' in module 'SPImode0'
-WARNING: [Synth 8-327] inferring latch for variable 'd_inc_reg' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/top.v:121]
-WARNING: [Synth 8-327] inferring latch for variable 'no_ng_reg' [C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.srcs/sources_1/new/top.v:133]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -191,7 +190,7 @@ Detailed RTL Component Info :
 	   2 Input     16 Bit       Adders := 1     
 	   2 Input     10 Bit       Adders := 10    
 	   2 Input      5 Bit       Adders := 1     
-	   2 Input      4 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 4     
 	   2 Input      3 Bit       Adders := 1     
 	   3 Input      3 Bit       Adders := 2     
 	   2 Input      2 Bit       Adders := 2     
@@ -204,7 +203,7 @@ Detailed RTL Component Info :
 	                8 Bit    Registers := 3     
 	                7 Bit    Registers := 1     
 	                5 Bit    Registers := 1     
-	                4 Bit    Registers := 3     
+	                4 Bit    Registers := 5     
 	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 2     
 	                1 Bit    Registers := 18    
@@ -220,7 +219,7 @@ Detailed RTL Component Info :
 	   5 Input      5 Bit        Muxes := 1     
 	   2 Input      5 Bit        Muxes := 5     
 	   4 Input      5 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 5     
+	   2 Input      4 Bit        Muxes := 7     
 	   4 Input      4 Bit        Muxes := 2     
 	   5 Input      3 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
@@ -228,7 +227,8 @@ Detailed RTL Component Info :
 	   2 Input      2 Bit        Muxes := 4     
 	   5 Input      1 Bit        Muxes := 5     
 	   4 Input      1 Bit        Muxes := 4     
-	   2 Input      1 Bit        Muxes := 12    
+	   2 Input      1 Bit        Muxes := 9     
+	   3 Input      1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -323,12 +323,12 @@ Detailed RTL Component Info :
 Module scorecounter 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      4 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 4     
 +---Registers : 
-	                4 Bit    Registers := 2     
+	                4 Bit    Registers := 4     
 +---Muxes : 
-	   2 Input      4 Bit        Muxes := 4     
-	   2 Input      1 Bit        Muxes := 3     
+	   2 Input      4 Bit        Muxes := 6     
+	   3 Input      1 Bit        Muxes := 2     
 Module sevenSeg 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -371,24 +371,24 @@ INFO: [Synth 8-3886] merging instance 'PmodJSTK_Int/SPI_Ctrl/sndData_reg[3]' (FD
 INFO: [Synth 8-3886] merging instance 'PmodJSTK_Int/SPI_Ctrl/sndData_reg[4]' (FDRE_1) to 'PmodJSTK_Int/SPI_Ctrl/sndData_reg[5]'
 INFO: [Synth 8-3886] merging instance 'PmodJSTK_Int/SPI_Ctrl/sndData_reg[5]' (FDRE_1) to 'PmodJSTK_Int/SPI_Ctrl/sndData_reg[6]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\PmodJSTK_Int/SPI_Ctrl/sndData_reg[6] )
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[3]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[4]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[5]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[6]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[7]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[8]' (FDCE) to 'pg/y_delta_reg_reg[9]'
-INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[9]' (FDCE) to 'pg/y_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[3]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[4]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[5]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[6]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[7]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[8]' (FDCE) to 'pg/x_delta_reg_reg[2]'
-INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[9]' (FDCE) to 'pg/x_delta_reg_reg[2]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pg/y_delta_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (\pg/y_delta_reg_reg[1] )
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[2]' (FDCE) to 'pg/y_delta_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[3]' (FDCE) to 'pg/y_delta_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[4]' (FDCE) to 'pg/y_delta_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[5]' (FDCE) to 'pg/y_delta_reg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[6]' (FDCE) to 'pg/y_delta_reg_reg[7]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[7]' (FDCE) to 'pg/y_delta_reg_reg[8]'
+INFO: [Synth 8-3886] merging instance 'pg/y_delta_reg_reg[8]' (FDCE) to 'pg/y_delta_reg_reg[9]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pg/x_delta_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (\pg/x_delta_reg_reg[1] )
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[2]' (FDCE) to 'pg/x_delta_reg_reg[3]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[3]' (FDCE) to 'pg/x_delta_reg_reg[4]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[4]' (FDCE) to 'pg/x_delta_reg_reg[5]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[5]' (FDCE) to 'pg/x_delta_reg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[6]' (FDCE) to 'pg/x_delta_reg_reg[7]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[7]' (FDCE) to 'pg/x_delta_reg_reg[8]'
+INFO: [Synth 8-3886] merging instance 'pg/x_delta_reg_reg[8]' (FDCE) to 'pg/x_delta_reg_reg[9]'
 INFO: [Synth 8-3886] merging instance 'rgb_reg_reg[0]' (FDE) to 'rgb_reg_reg[4]'
 INFO: [Synth 8-3886] merging instance 'rgb_reg_reg[1]' (FDE) to 'rgb_reg_reg[3]'
 INFO: [Synth 8-3886] merging instance 'rgb_reg_reg[2]' (FDE) to 'rgb_reg_reg[6]'
@@ -433,7 +433,7 @@ WARNING: [Synth 8-3332] Sequential element (pg/y_delta_reg_reg[0]) is unused and
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pg/y_ball_reg0_inferred /\pg/y_ball_reg_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pg/x_ball_reg0_inferred /\pg/x_ball_reg_reg[0] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -445,13 +445,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 801.305 ; gain = 489.188
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 800.211 ; gain = 487.387
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 821.395 ; gain = 509.277
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 829.094 ; gain = 516.270
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -463,7 +463,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -487,7 +487,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -500,7 +500,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -512,25 +512,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -562,28 +562,27 @@ Report Cell Usage:
 +------+-------+------+
 |1     |BUFG   |     2|
 |2     |CARRY4 |    30|
-|3     |LUT1   |     7|
-|4     |LUT2   |    94|
-|5     |LUT3   |    59|
-|6     |LUT4   |    77|
-|7     |LUT5   |    70|
-|8     |LUT6   |    62|
+|3     |LUT1   |    10|
+|4     |LUT2   |    93|
+|5     |LUT3   |    63|
+|6     |LUT4   |    68|
+|7     |LUT5   |    73|
+|8     |LUT6   |    74|
 |9     |SRL16E |     1|
-|10    |FDCE   |    82|
+|10    |FDCE   |    90|
 |11    |FDRE   |   158|
 |12    |FDR_1  |     6|
 |13    |FDSE   |     2|
 |14    |FDS_1  |     1|
-|15    |LD     |     2|
-|16    |IBUF   |     8|
-|17    |OBUF   |    31|
+|15    |IBUF   |     9|
+|16    |OBUF   |    31|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+----------------+---------------+------+
 |      |Instance        |Module         |Cells |
 +------+----------------+---------------+------+
-|1     |top             |               |   692|
+|1     |top             |               |   711|
 |2     |  PmodJSTK_Int  |PmodJSTK       |   205|
 |3     |    SPI_Ctrl    |spiCtrl        |   132|
 |4     |    SPI_Int     |SPImode0       |    46|
@@ -591,36 +590,34 @@ Report Instance Areas:
 |6     |  btReset       |debouncer      |     2|
 |7     |  btnD          |debouncer_0    |     3|
 |8     |  btnU          |debouncer_1    |     3|
-|9     |  display       |sevenSeg       |    57|
+|9     |  display       |sevenSeg       |    46|
 |10    |  genSndRec     |clk5Hz         |    62|
-|11    |  gs            |scorecounter   |    18|
-|12    |  pg            |pixelGenerator |   179|
-|13    |  vga           |VGAdriver      |   116|
+|11    |  gs            |scorecounter   |    47|
+|12    |  pg            |pixelGenerator |   175|
+|13    |  vga           |VGAdriver      |   123|
 +------+----------------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 35 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 830.473 ; gain = 180.914
-Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 830.473 ; gain = 518.355
+Synthesis finished with 0 errors, 0 critical warnings and 33 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 829.145 ; gain = 180.094
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 829.145 ; gain = 516.320
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 47 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 46 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 9 instances were transformed.
+  A total of 7 instances were transformed.
   FDR_1 => FDRE (inverted pins: C): 6 instances
   FDS_1 => FDSE (inverted pins: C): 1 instances
-  LD => LDCE: 1 instances
-  LD => LDCE (inverted pins: G): 1 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-94 Infos, 42 Warnings, 0 Critical Warnings and 0 Errors encountered.
+95 Infos, 40 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 830.473 ; gain = 531.207
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 829.145 ; gain = 529.156
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Benji/BENJI SCHOOL/UCLA UNDERGRAD/116L/Final Project/CSM152A_Lab4/final_project/final_project.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 830.473 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Wed Dec  6 01:00:14 2023...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 829.145 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Dec  6 03:08:19 2023...

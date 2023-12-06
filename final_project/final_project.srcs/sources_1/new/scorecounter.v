@@ -21,53 +21,58 @@
 
 
 module scorecounter(
-     input clk,
+   input clk,
    input reset,
    input d_inc, d_clr,
-   output [3:0] dig0, dig1
+   output [3:0] dig0, dig1, dig2, dig3
    );
    
    // signal declaration
-   reg [3:0] r_dig0, r_dig1, dig0_next, dig1_next;
+   reg [3:0] r_dig0, r_dig1, r_dig2, r_dig3;
    
    // register control
-   always @(posedge clk or posedge reset)
+   always @(posedge d_inc or posedge reset)
        if(reset) begin
+           r_dig3 <= 0;
+           r_dig2 <= 0;
            r_dig1 <= 0;
            r_dig0 <= 0;
-       end
-       
-       else begin
-           r_dig1 <= dig1_next;
-           r_dig0 <= dig0_next;
-       end
-   
-   // next state logic
-   always @* begin
-       dig0_next = r_dig0;
-       dig1_next = r_dig1;
-       
-       if(d_clr) begin
-           dig0_next <= 0;
-           dig1_next <= 0;
-       end
-       
-       else if(d_inc)
-           if(r_dig0 == 9) begin
-               dig0_next = 0;
-               
-               if(r_dig1 == 9)
-                   dig1_next = 0;
-               else
-                   dig1_next = r_dig1 + 1;
-           end
-       
-           else    // dig0 != 9
-               dig0_next = r_dig0 + 1;
-   end
-   
-   // output
+       end else begin
+            if(d_inc) begin
+                if (r_dig0 == 9 && r_dig1 == 9) begin
+                            // reset seconds
+                            r_dig0 <= 0;
+                            r_dig1 <= 0;
+                            
+                            // increment minutes
+                            if (r_dig2 == 9 && r_dig3 == 9) begin
+                                // reset minutes
+                                r_dig2 <= 4'b0;
+                                r_dig3 <= 4'b0;
+                            end
+                            else if (r_dig2 == 9) begin
+                                // overflow min
+                                r_dig2 <= 4'b0;
+                                r_dig3 <= r_dig3 + 4'b1;
+                            end
+                            else begin
+                                r_dig2 <= r_dig2 + 4'b1;
+                            end
+                        end
+                        else if (r_dig0 == 9) begin
+                            // seconds overflow
+                            r_dig0 <= 4'b0;
+                            r_dig1 <= r_dig1 + 4'b1;
+                        end
+                        else begin
+                            r_dig0 <= r_dig0 + 4'b1;
+                        end
+                    end 
+            end
+
    assign dig0 = r_dig0;
    assign dig1 = r_dig1;
+   assign dig2 = r_dig2;
+   assign dig3 = r_dig3;
    
 endmodule

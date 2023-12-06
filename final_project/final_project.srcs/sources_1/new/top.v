@@ -22,7 +22,7 @@
 
 module top(
         // non pmod inputs
-        clk, reset, up, down, hsync, vsync, rgb, pmod_switch,
+        clk, reset, up, down, hsync, vsync, rgb, pmod_switch, pause_switch,
         //pmod inputs
          MISO, SW, SS, MOSI, SCLK, LED, an, seg
     );
@@ -32,6 +32,7 @@ module top(
      input up;
      input down;
      input pmod_switch;
+     input pause_switch;
      output hsync;
      output vsync;
      output [11:0] rgb;
@@ -70,11 +71,9 @@ module top(
      wire [9:0] posData;
      
      wire score;
-     wire lives;
      
-     wire [3:0] dig0, dig1;
+     wire [3:0] dig0, dig1, dig2, dig3;
      reg d_inc, d_clr;
-     reg no_ng = 1'b1;
 
 
      
@@ -112,36 +111,31 @@ module top(
                       LED <= {jstkData[1], {jstkData[2], jstkData[0]}};
               end
       end
+      
      
      VGAdriver vga(.clk(clk), .reset(w_reset), .video_on(w_vid_on), .hsync(hsync), .vsync(vsync), .p_tick(w_p_tick), .x(w_x), .y(w_y));
-     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .posdata(posData), .score(score), .lives(lives), .rgb(rgb_next));
+     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .posdata(posData), .score(score), .pause(pause_switch), .rgb(rgb_next));
      debouncer btReset(.clk(clk), .btn_in(reset), .btn_out(w_reset));
      debouncer btnU(.clk(clk), .btn_in(up), .btn_out(w_up));
      debouncer btnD(.clk(clk), .btn_in(down), .btn_out(w_down));
-     scorecounter gs(.clk(clk), .reset(reset), .d_inc(d_inc), .d_clr(d_clr), .dig0(dig0), .dig1(dig1));
+     scorecounter gs(.clk(clk), .reset(reset), .d_inc(d_inc), .d_clr(d_clr), .dig0(dig0), .dig1(dig1), .dig2(dig2), .dig3(dig3));
      sevenSeg display(
                               .CLK(clk),
                               .RST(reset),
                               .DIN1(dig0),
                               .DIN2(dig1),
-                              .DIN3(4'b1111),
-                              .DIN4(4'b0011),
+                              .DIN3(dig2),
+                              .DIN4(dig3),
                               .AN(an),
                               .SEG(seg)
                       );
       always @(*) begin
-            if(no_ng) begin
-                d_clr = 1'b1;
-                no_ng = 1'b0;
-            end else begin
             d_clr = 1'b0; 
             d_inc = 1'b0;
             if(score)
                 d_inc = 1'b1;
-            end
       end                
      
-
      
      // rgb buffer
      always @(posedge clk)

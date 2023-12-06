@@ -23,7 +23,7 @@
 
 module pixelGenerator(
     // inputs
-    clk, reset, up, down, video_on, x, y, switch, posdata, score, lives,
+    clk, reset, up, down, video_on, x, y, switch, posdata, score, pause,
     //outputs
     rgb
     );
@@ -38,7 +38,7 @@ module pixelGenerator(
     input [9:0] y;
     input [9:0] posdata;
     input switch;
-    output reg lives;
+    input pause;
     output reg score;
     output reg [11:0] rgb;
 
@@ -98,8 +98,13 @@ module pixelGenerator(
                 y_ball_reg <= 0;
                 x_delta_reg <= 10'h002;
                 y_delta_reg <= 10'h002;
-            end
-            else begin
+            end else if(pause) begin
+                y_pad_reg <= y_pad_reg;
+                x_ball_reg <= x_ball_reg;
+                y_ball_reg <= y_ball_reg;
+                x_delta_reg <= x_delta_reg;
+                y_delta_reg <= y_delta_reg;
+            end else begin
                 y_pad_reg <= y_pad_next;
                 x_ball_reg <= x_ball_next;
                 y_ball_reg <= y_ball_next;
@@ -152,9 +157,9 @@ module pixelGenerator(
                     end else begin
                         y_pad_next = y_pad_reg;     // no move
                         if(refresh_tick)
-                            if((posdata > 10'd550) & (y_pad_t > PAD_VELOCITY))
+                            if((posdata > 10'd530) & (y_pad_t > PAD_VELOCITY))
                                 y_pad_next = y_pad_reg - PAD_VELOCITY; 
-                            else if((posdata < 10'd490) & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
+                            else if((posdata < 10'd500) & (y_pad_b < (Y_MAX - PAD_VELOCITY)))
                                 y_pad_next = y_pad_reg + PAD_VELOCITY;
                     end
                 end
@@ -179,7 +184,6 @@ module pixelGenerator(
                 
                 // change ball direction after collision
                 always @* begin
-                    lives = 1'b0;
                     score = 1'b0;
                     x_delta_next = x_delta_reg;
                     y_delta_next = y_delta_reg;
@@ -194,8 +198,6 @@ module pixelGenerator(
                         x_delta_next = BALL_VELOCITY_NEG;                       // move left
                         score = 1'b1;
                         end
-                    else if(x_ball_r > X_MAX)
-                        lives = 1'b1;
                 end  
             
                 
