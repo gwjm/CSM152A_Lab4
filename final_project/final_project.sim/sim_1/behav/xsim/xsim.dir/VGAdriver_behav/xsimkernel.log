@@ -2,3 +2,6 @@ Running: xsim.dir/VGAdriver_behav/xsimk.exe -simmode gui -wdb VGAdriver_behav.wd
 Design successfully loaded
 Design Loading Memory Usage: 5812 KB (Peak: 5812 KB)
 Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 6424 KB (Peak: 6424 KB)
+Simulation CPU Usage: 30 ms

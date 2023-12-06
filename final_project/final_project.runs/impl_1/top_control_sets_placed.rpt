@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Tue Dec  5 03:19:37 2023
+| Date         : Wed Dec  6 01:00:43 2023
 | Host         : DESKTOP-917RS0J running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    11 |
-| Unused register locations in slices containing registers |    32 |
+| Number of unique control sets                            |    21 |
+| Unused register locations in slices containing registers |    64 |
 +----------------------------------------------------------+-------+
 
 
@@ -34,10 +34,10 @@ Table of Contents
 +--------+--------------+
 | Fanout | Control Sets |
 +--------+--------------+
-|      2 |            2 |
-|      4 |            2 |
-|      6 |            1 |
-|    16+ |            6 |
+|      2 |            3 |
+|      4 |            1 |
+|      8 |            2 |
+|    16+ |           15 |
 +--------+--------------+
 
 
@@ -47,32 +47,42 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              12 |            4 |
-| No           | No                    | Yes                    |              68 |            8 |
-| No           | Yes                   | No                     |             120 |           20 |
-| Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              20 |            2 |
-| Yes          | Yes                   | No                     |              20 |            4 |
+| No           | No                    | No                     |              26 |            7 |
+| No           | No                    | Yes                    |              72 |           20 |
+| No           | Yes                   | No                     |             166 |           24 |
+| Yes          | No                    | No                     |              24 |            6 |
+| Yes          | No                    | Yes                    |              92 |           17 |
+| Yes          | Yes                   | No                     |             140 |           21 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+----------------------------------+------------------+------------------+----------------+
-|  Clock Signal  |           Enable Signal          | Set/Reset Signal | Slice Load Count | Bel Load Count |
-+----------------+----------------------------------+------------------+------------------+----------------+
-|  iSCLK         | PmodJSTK_Int/SPI_Int/rSR_0       | reset_IBUF       |                1 |              2 |
-| ~iSCLK         | PmodJSTK_Int/SPI_Ctrl/SS_i_1_n_0 | reset_IBUF       |                1 |              2 |
-|  iSCLK         |                                  |                  |                1 |              4 |
-|  clk_IBUF_BUFG |                                  |                  |                2 |              4 |
-| ~iSCLK         |                                  |                  |                2 |              6 |
-| ~iSCLK         | PmodJSTK_Int/SPI_Int/wSR_1       | reset_IBUF       |                2 |             16 |
-|  vga/w_p_tick  |                                  | btReset/AR[0]    |                3 |             20 |
-|  vga/w_p_tick  | vga/v_count_next_1               | btReset/AR[0]    |                2 |             20 |
-| ~iSCLK         |                                  | reset_IBUF       |                9 |             48 |
-|  clk_IBUF_BUFG |                                  | btReset/AR[0]    |                5 |             48 |
-|  clk_IBUF_BUFG |                                  | reset_IBUF       |               11 |             72 |
-+----------------+----------------------------------+------------------+------------------+----------------+
++-------------------------------+-----------------------------------------------------+------------------------------+------------------+----------------+
+|          Clock Signal         |                    Enable Signal                    |       Set/Reset Signal       | Slice Load Count | Bel Load Count |
++-------------------------------+-----------------------------------------------------+------------------------------+------------------+----------------+
+| ~iSCLK                        | PmodJSTK_Int/SPI_Ctrl/SS_i_1_n_0                    | reset_IBUF                   |                1 |              2 |
+|  no_ng                        |                                                     |                              |                1 |              2 |
+| ~no_ng                        |                                                     |                              |                1 |              2 |
+|  display/DCLK                 |                                                     |                              |                1 |              4 |
+|  clk_IBUF_BUFG                | gs/r_dig0[3]_i_1_n_0                                | reset_IBUF                   |                1 |              8 |
+|  clk_IBUF_BUFG                | gs/r_dig1[3]_i_1_n_0                                | reset_IBUF                   |                1 |              8 |
+|  iSCLK                        | PmodJSTK_Int/SPI_Int/rSR                            | reset_IBUF                   |                2 |             16 |
+| ~iSCLK                        | PmodJSTK_Int/SPI_Int/wSR_0                          | reset_IBUF                   |                3 |             16 |
+|  clk_IBUF_BUFG                |                                                     |                              |                5 |             20 |
+|  clk_IBUF_BUFG                | pg/y_pad_reg[9]_i_1_n_0                             | btReset/AR[0]                |                5 |             20 |
+|  vga/h_count_next_reg[0]_0[0] |                                                     | btReset/AR[0]                |                6 |             20 |
+|  vga/h_count_next_reg[0]_0[0] | vga/v_count_next_1                                  | btReset/AR[0]                |                4 |             20 |
+|  display/DCLK                 |                                                     | reset_IBUF                   |                3 |             22 |
+|  clk_IBUF_BUFG                | vga/h_count_next_reg[0]_0[0]                        |                              |                6 |             24 |
+| ~iSCLK                        | PmodJSTK_Int/SPI_Ctrl/FSM_onehot_pState_reg_n_0_[4] | reset_IBUF                   |                3 |             26 |
+|  clk_IBUF_BUFG                |                                                     | display/clkCount[15]_i_1_n_0 |                4 |             30 |
+|  clk_IBUF_BUFG                | vga/E[0]                                            | btReset/AR[0]                |                6 |             36 |
+| ~iSCLK                        |                                                     | reset_IBUF                   |                9 |             42 |
+|  clk_IBUF_BUFG                |                                                     | btReset/AR[0]                |               14 |             52 |
+|  clk_IBUF_BUFG                |                                                     | reset_IBUF                   |                8 |             72 |
+| ~iSCLK                        | PmodJSTK_Int/SPI_Ctrl/tmpSR[39]_i_1_n_0             | reset_IBUF                   |               12 |             80 |
++-------------------------------+-----------------------------------------------------+------------------------------+------------------+----------------+
 
 

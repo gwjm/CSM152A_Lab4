@@ -24,7 +24,7 @@ module top(
         // non pmod inputs
         clk, reset, up, down, hsync, vsync, rgb, pmod_switch,
         //pmod inputs
-         MISO, SW, SS, MOSI, SCLK, LED
+         MISO, SW, SS, MOSI, SCLK, LED, an, seg
     );
     
      input clk;
@@ -42,6 +42,8 @@ module top(
      output MOSI;                // Master Out Slave In, Pin 2, Port JA
      output SCLK;                // Serial Clock, Pin 4, Port JA
      output [2:0] LED;			// LEDs 2, 1, and 0
+     output [3:0] an;			// Anodes for Seven Segment Display
+     output [6:0] seg;            // Cathodes for Seven Segment Display
      
      wire w_reset, w_up, w_down, w_vid_on, w_p_tick;
      wire [9:0] w_x, w_y;
@@ -51,7 +53,9 @@ module top(
      wire SS;						// Active low
      wire MOSI;                    // Data transfer from master to slave
      wire SCLK;                    // Serial clock that controls communication
-     reg [2:0] LED;                // Status of PmodJSTK buttons displayed on LEDs
+     reg [2:0] LED;                // Status of PmodJSTK buttons displayed on LEDs   
+     wire [3:0] an;                // Anodes for Seven Segment Display
+     wire [6:0] seg;            // Cathodes for Seven Segment Display
 
      // Holds data to be sent to PmodJSTK
      wire [7:0] sndData;
@@ -64,6 +68,14 @@ module top(
 
      // Signal carrying output data that user selected
      wire [9:0] posData;
+     
+     wire score;
+     wire lives;
+     
+     wire [3:0] dig0, dig1;
+     reg d_inc, d_clr;
+     reg no_ng = 1'b1;
+
 
      
      PmodJSTK PmodJSTK_Int(
@@ -84,6 +96,7 @@ module top(
      );
      
      
+     
           
       assign posData = {jstkData[25:24], jstkData[39:32]};
       
@@ -100,11 +113,35 @@ module top(
               end
       end
      
-     VGAdriver vga(.clk(clk), .reset(w_reset), .vid_on(w_vid_on), .hsync(hsync), .vsync(vsync), .p_tick(w_p_tick), .x(w_x), .y(w_y));
-     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .posdata(posData), .rgb(rgb_next));
+     VGAdriver vga(.clk(clk), .reset(w_reset), .video_on(w_vid_on), .hsync(hsync), .vsync(vsync), .p_tick(w_p_tick), .x(w_x), .y(w_y));
+     pixelGenerator pg(.clk(clk), .reset(w_reset), .up(w_up), .down(w_down),.video_on(w_vid_on), .x(w_x), .y(w_y), .switch(pmod_switch), .posdata(posData), .score(score), .lives(lives), .rgb(rgb_next));
      debouncer btReset(.clk(clk), .btn_in(reset), .btn_out(w_reset));
      debouncer btnU(.clk(clk), .btn_in(up), .btn_out(w_up));
      debouncer btnD(.clk(clk), .btn_in(down), .btn_out(w_down));
+     scorecounter gs(.clk(clk), .reset(reset), .d_inc(d_inc), .d_clr(d_clr), .dig0(dig0), .dig1(dig1));
+     sevenSeg display(
+                              .CLK(clk),
+                              .RST(reset),
+                              .DIN1(dig0),
+                              .DIN2(dig1),
+                              .DIN3(4'b1111),
+                              .DIN4(4'b0011),
+                              .AN(an),
+                              .SEG(seg)
+                      );
+      always @(*) begin
+            if(no_ng) begin
+                d_clr = 1'b1;
+                no_ng = 1'b0;
+            end else begin
+            d_clr = 1'b0; 
+            d_inc = 1'b0;
+            if(score)
+                d_inc = 1'b1;
+            end
+      end                
+     
+
      
      // rgb buffer
      always @(posedge clk)
